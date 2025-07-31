@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serum Universal Anti-Aging - Guía Profesional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #4a5c3a;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e5d8 100%);
+        }
+
+        .catalog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        /* PORTADA */
+        .cover {
+            background: linear-gradient(135deg, #e8e5d8 0%, #d4d0c4 50%, #c9c5b8 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50px) translateY(-50px); }
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #8b9d77, #a4b891);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover h1 {
+            font-size: 3.2em;
+            color: #4a5c3a;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover .subtitle {
+            font-size: 1.4em;
+            color: #6b7d5c;
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover .tagline {
+            background: rgba(255,255,255,0.9);
+            padding: 20px 30px;
+            border-radius: 25px;
+            color: #4a5c3a;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* SECCIONES */
+        .section {
+            padding: 50px 40px;
+            border-bottom: 2px solid #f0ede6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #4a5c3a;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b9d77, #a4b891);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* DESCRIPCIÓN DEL SERUM */
+        .serum-description {
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ede6 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .serum-title {
+            font-size: 2.2em;
+            color: #4a5c3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .ingredient-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .ingredient-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8b9d77, #a4b891);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .ingredient-name {
+            font-size: 1.3em;
+            color: #4a5c3a;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-benefit {
+            color: #6b7d5c;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* RUTINAS */
+        .routine-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .routine-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .routine-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f4d03f, #f7dc6f);
+        }
+
+        .routine-card.night::before {
+            background: linear-gradient(90deg, #5d6d7e, #85929e);
+        }
+
+        .routine-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .routine-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #f4d03f, #f7dc6f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-right: 20px;
+        }
+
+        .night .routine-icon {
+            background: linear-gradient(45deg, #5d6d7e, #85929e);
+        }
+
+        .routine-title {
+            font-size: 1.8em;
+            color: #4a5c3a;
+            margin-bottom: 5px;
+        }
+
+        .routine-subtitle {
+            color: #6b7d5c;
+            font-style: italic;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #fafaf8;
+            border-radius: 12px;
+            border-left: 4px solid #8b9d77;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: #8b9d77;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            font-size: 1.2em;
+            color: #4a5c3a;
+            font-weight: bold;
+        }
+
+        .step-content {
+            color: #6b7d5c;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* TÉCNICAS AVANZADAS */
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .technique-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border: 2px solid #e8e5d8;
+        }
+
+        .technique-title {
+            color: #4a5c3a;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .technique-title::before {
+            content: '✨';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* CRONOGRAMA */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .day-card {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .day-name {
+            font-weight: bold;
+            color: #4a5c3a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .day-activity {
+            color: #6b7d5c;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* RESULTADOS */
+        .results-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .timeline-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid #8b9d77;
+            position: relative;
+        }
+
+        .timeline-period {
+            font-size: 1.3em;
+            color: #4a5c3a;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .timeline-results {
+            color: #6b7d5c;
+            line-height: 1.6;
+        }
+
+        .timeline-results li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-results li::before {
+            content: '🌿';
+            position: absolute;
+            left: 0;
+        }
+
+        /* ERRORES Y CONSEJOS */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tips-card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .dont-card {
+            background: linear-gradient(135deg, #fdf2f2 0%, #fce8e6 100%);
+            border-left: 5px solid #e74c3c;
+        }
+
+        .do-card {
+            background: linear-gradient(135deg, #f0f9f0 0%, #e6f3e6 100%);
+            border-left: 5px solid #27ae60;
+        }
+
+        .tips-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dont-card .tips-title {
+            color: #c0392b;
+        }
+
+        .do-card .tips-title {
+            color: #229954;
+        }
+
+        .tips-title::before {
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+
+        .dont-card .tips-title::before {
+            content: '❌';
+        }
+
+        .do-card .tips-title::before {
+            content: '✅';
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .cover {
+                padding: 40px 20px;
+            }
+            
+            .cover h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .routine-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="catalog-container">
+        <!-- PORTADA -->
+        <div class="cover">
+            <div class="logo">🌿</div>
+            <h1>Serum Universal Anti-Aging</h1>
+            <p class="subtitle">Protocolo Profesional de Aplicación</p>
+            <div class="tagline">
+                Fórmula natural con 8 aceites esenciales premium para una piel radiante, hidratada y visiblemente más joven
+            </div>
+        </div>
+
+        <!-- DESCRIPCIÓN DEL SERUM -->
+        <div class="section">
+            <h2 class="section-title">🌟 Fórmula Premium Natural</h2>
+            <div class="serum-description">
+                <h3 class="serum-title">8 Ingredientes Activos de Lujo</h3>
+                <p style="text-align: center; color: #6b7d5c; margin-bottom: 30px; font-size: 1.1em;">
+                    Una sinfonía de aceites preciosos cuidadosamente seleccionados para nutrir, reparar y rejuvenecer tu piel de forma natural
+                </p>
+                
+                <div class="ingredients-grid">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">🏺</div>
+                        <div class="ingredient-name">Aceite de Jojoba</div>
+                        <div class="ingredient-benefit">Hidratación profunda que imita el sebo natural de la piel. Regula la producción de grasa y mantiene el equilibrio perfecto.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">🌰</div>
+                        <div class="ingredient-name">Aceite de Argán</div>
+                        <div class="ingredient-benefit">Rico en vitamina E y ácidos grasos esenciales. Restaura la elasticidad y suavidad, combatiendo los signos del envejecimiento.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">🖤</div>
+                        <div class="ingredient-name">Aceite de Comino Negro</div>
+                        <div class="ingredient-benefit">Poderoso antioxidante y antiinflamatorio. Calma irritaciones y protege contra el daño ambiental y los radicales libres.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">🌹</div>
+                        <div class="ingredient-name">Aceite de Rosa Mosqueta</div>
+                        <div class="ingredient-benefit">Alto en vitamina C y retinol natural. Reduce cicatrices, manchas y líneas finas mientras unifica el tono de la piel.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">👑</div>
+                        <div class="ingredient-name">Aceite de Incienso</div>
+                        <div class="ingredient-benefit">El "oro líquido" de la cosmética. Estimula la regeneración celular, firma la piel y reduce arrugas profundas.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">💎</div>
+                        <div class="ingredient-name">Aceite de Mirra</div>
+                        <div class="ingredient-benefit">Antiséptico natural con propiedades curativas. Tonifica, rejuvenece y mejora la textura de la piel madura.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">💜</div>
+                        <div class="ingredient-name">Aceite de Lavanda</div>
+                        <div class="ingredient-benefit">Calma y equilibra todo tipo de piel. Sus propiedades relajantes y cicatrizantes proporcionan bienestar integral.</div>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">⚡</div>
+                        <div class="ingredient-name">Vitamina E</div>
+                        <div class="ingredient-benefit">Antioxidante protector que previene el envejecimiento prematuro. Nutre intensamente y mantiene la piel joven por más tiempo.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RUTINAS -->
+        <div class="section">
+            <h2 class="section-title">📅 Rutinas Diarias</h2>
+            <div class="routine-container">
+                <!-- RUTINA MATUTINA -->
+                <div class="routine-card">
+                    <div class="routine-header">
+                        <div class="routine-icon">☀️</div>
+                        <div>
+                            <div class="routine-title">Rutina Matutina</div>
+                            <div class="routine-subtitle">Protección y Luminosidad</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Limpieza Profunda</div>
+                        </div>
+                        <div class="step-content">
+                            Agua tibia + limpiador pH balanceado. Masaje circular 30 seg con yemas de dedos. Secar con palmaditas suaves.
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Tónico Preparador</div>
+                        </div>
+                        <div class="step-content">
+                            Equilibra pH y prepara la piel. Aplicar con palmaditas suaves desde centro hacia exterior. No frotar.
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Serum Universal</div>
+                        </div>
+                        <div class="step-content">
+                            3-4 gotas calentadas entre palmas. Técnica "Press & Release". Zona T (1 gota), mejillas (1 c/u), contorno ojos (½ gota), cuello (1 gota).
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Hidratante + SPF</div>
+                        </div>
+                        <div class="step-content">
+                            Esperar 5-7 min después del serum. Hidratante según tipo de piel + protector solar SPF 30+ obligatorio.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RUTINA NOCTURNA -->
+                <div class="routine-card night">
+                    <div class="routine-header">
+                        <div class="routine-icon">🌙</div>
+                        <div>
+                            <div class="routine-title">Rutina Nocturna</div>
+                            <div class="routine-subtitle">Reparación y Regeneración</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Doble Limpieza</div>
+                        </div>
+                        <div class="step-content">
+                            Primera: aceite desmaquillante. Segunda: mismo limpiador de la mañana con masaje más prolongado.
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Exfoliación (2-3x/semana)</div>
+                        </div>
+                        <div class="step-content">
+                            Lun/Mié/Vie: exfoliante químico suave (BHA/AHA). Aplicar ANTES del serum para mejor penetración.
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Serum Intensivo</div>
+                        </div>
+                        <div class="step-content">
+                            4-5 gotas con técnica "Deep Penetration". Masaje linfático: cuello → mandíbula → mejillas → frente. 7-10 minutos de aplicación.
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Hidratante Nocturno</div>
+                        </div>
+                        <div class="step-content">
+                            Esperar 10-15 min después del serum. Crema más rica que la de día para reparación durante el sueño.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TÉCNICAS AVANZADAS -->
+        <div class="section">
+            <h2 class="section-title">💫 Técnicas Avanzadas</h2>
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h3 class="technique-title">Facial Glow Massage</h3>
+                    <p>Movimientos ascendentes con knuckles después del serum. 5 minutos de estimulación mejoran circulación y absorción. Efecto lifting natural.</p>
+                </div>
+
+                <div class="technique-card">
+                    <h3 class="technique-title">Layering Estratégico</h3>
+                    <p>Orden perfecto: productos base acuosa → serum universal → tratamientos específicos → hidratante → protección solar/aceite facial.</p>
+                </div>
+
+                <div class="technique-card">
+                    <h3 class="technique-title">Warm Compress</h3>
+                    <p>1 vez por semana: toalla tibia sobre la cara 2-3 minutos después del serum. Abre poros para penetración profunda.</p>
+                </div>
+
+                <div class="technique-card">
+                    <h3 class="technique-title">Face Mapping</h3>
+                    <p>Aplicación personalizada: menos producto en zona T grasa, concentración normal en mejillas, ultra-suave en contorno de ojos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONOGRAMA SEMANAL -->
+        <div class="section">
+            <h2 class="section-title">📊 Cronograma Semanal</h2>
+            <div class="schedule-grid">
+                <div class="day-card">
+                    <div class="day-name">LUNES</div>
+                    <div class="day-activity">Rutina completa + exfoliación suave</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">MARTES</div>
+                    <div class="day-activity">Rutina estándar</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">MIÉRCOLES</div>
+                    <div class="day-activity">Rutina completa + masaje facial</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">JUEVES</div>
+                    <div class="day-activity">Rutina estándar</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">VIERNES</div>
+                    <div class="day-activity">Rutina completa + exfoliación + mascarilla</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">SÁBADO</div>
+                    <div class="day-activity">Rutina relajada + tratamiento extra</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">DOMINGO</div>
+                    <div class="day-activity">Rutina mínima de mantenimiento</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTADOS ESPERADOS -->
+        <div class="section">
+            <h2 class="section-title">📈 Resultados Esperados</h2>
+            <div class="results-timeline">
+                <div class="timeline-card">
+                    <div class="timeline-period">Primera Semana</div>
+                    <ul class="timeline-results">
+                        <li>Piel más suave al tacto</li>
+                        <li>Mejor absorción de productos</li>
+                        <li>Menos tirantez después del lavado</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-period">Semanas 2-4</div>
+                    <ul class="timeline-results">
+                        <li>Textura más uniforme</li>
+                        <li>Luminosidad natural</li>
+                        <li>Poros menos visibles</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-period">Semanas 6-8</div>
+                    <ul class="timeline-results">
+                        <li>Líneas finas menos marcadas</li>
+                        <li>Tono más uniforme</li>
+                        <li>Elasticidad mejorada</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-period">3+ Meses</div>
+                    <ul class="timeline-results">
+                        <li>Resultados anti-aging visibles</li>
+                        <li>Piel más firme</li>
+                        <li>Hidratación duradera</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ERRORES Y CONSEJOS -->
+        <div class="section">
+            <h2 class="section-title">⚠️ Guía de Errores y Aciertos</h2>
+            <div class="tips-grid">
+                <div class="tips-card dont-card">
+                    <h3 class="tips-title">NO HAGAS</h3>
+                    <ul class="tips-list">
+                        <li>Aplicar serum en piel completamente seca</li>
+                        <li>Frotar agresivamente durante aplicación</li>
+                        <li>Usar demasiado producto (más no es mejor)</li>
+                        <li>Saltarte el protector solar en la mañana</li>
+                        <li>Aplicar hidratante inmediatamente después del serum</li>
+                        <li>Mezclar el serum con otros productos</li>
+                    </ul>
+                </div>
+
+                <div class="tips-card do-card">
+                    <h3 class="tips-title">SÍ HAZLO</h3>
+                    <ul class="tips-list">
+                        <li>Ser consistente todos los días</li>
+                        <li>Darle tiempo de absorción a cada
